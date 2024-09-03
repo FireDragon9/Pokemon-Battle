@@ -1,3 +1,4 @@
+#pragma once
 #ifndef POKEMON_H
 #define POKEMON_H
 
@@ -8,16 +9,53 @@
 #include <SFML/System/String.hpp>
 #include <string>
 
+enum Types {
+  null,
+  FIRE,
+  WATER,
+  ELETRIC,
+  GRASS,
+  ICE,
+  FIGHTING,
+  POISON,
+  GROUND,
+  FLYING,
+  PSYCHIC,
+  BUG,
+  ROCK,
+  GHOST,
+  DRAGON,
+  DARK,
+  STEEL,
+  FAIRY
+
+};
+
+//////////////////
+/////////////////
+
 class Pokemon {
 private:
   std::string pkmName;
   int level;
 
+  int pkmType[2];
+
+public:
+  // constructor
+  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
+          int spDef, int spd);
+
   ////////////////////////
+  ////////////////////////
+  //////////////////////// CLASS STATS
+  ////////////////////////
+  ////////////////////////
+
   class Stats {
 
   private:
-    int HP;
+    double HP;
     int Attack;
     int Defense;
     int spAttack;
@@ -27,7 +65,7 @@ private:
   public:
     // SETTERS
 
-    void setHP(int &hp);
+    void setHP(double hp);
     void setAttack(int &atk);
     void setDef(int &def);
     void setSpAttack(int &spAtk);
@@ -35,7 +73,7 @@ private:
     void setSpd(int &spd);
 
     // GETTERS
-    int getHP();
+    double getHP();
     int getAttack();
     int getDef();
     int getSpAttack();
@@ -45,6 +83,11 @@ private:
   } Stats; // Anonymous class for abilities
 
   /////////////////////////
+  ////////////////////////
+  /////////////////////// CLASS DRAW
+  ////////////////////////
+  ///////////////////////
+
   class Draw {
 
   private:
@@ -77,20 +120,36 @@ private:
 
   } Draw;
 
-  /////////////////////////
+  //////////////////////
+  /////////////////////
+  ///////////////////// BATTLE
+  ////////////////////
+  ////////////////////
 
-public:
-  // constructor
-  Pokemon(std::string name, int lvl, int hp, int atk, int def, int spAtk,
-          int spDef, int spd);
+  // GETTING DAMAGED
+
+  void HPdmg(double damage);
+
+  ///////////////////////////////
+  ///////////////////////////////
+  ///////////////////////////////
 
   // setters
   void setName(std::string &name);
 
   void setLevel(int &lvl);
 
+  void setFirstType(int type);
+
+  void setSecondType(int type);
+
   // getters
-  std::string getName() const;
+  std::string getName();
+
+  int getLevel();
+
+  int getFirstType() const;
+  int getSecondType() const;
 };
 
 #endif // POKEMON_H

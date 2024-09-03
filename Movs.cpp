@@ -1,54 +1,64 @@
+#include "Movs.h"
 #include "Pokemon.h"
-#include "SFML/include/Graphics.hpp"
+#include <string>
 
-using namespace std;
-using namespace sf;
+Movs::Movs(std::string name, int type, int dmg) {
 
-class Movs {
+  setMovType(type);
 
-private:
-  string movName;
-  int damage;
-  Texture movTexture;
-  int mType;
-  Sprite movSprite;
+  setMovDmg(dmg);
 
-public:
-  // constructor
-  ////DONT FORGET SPRITES AND Texture
-  /*
-  Movs(string name, int movDamage, int movType){
+  setMovName(name);
+};
 
-    setName(name);
-    setDamage(movDamage);
-    setType(movType);
+///////////////////////
+/////////////////////// DAMAGING
+//////////////////////
+void Movs::Damaging(Pokemon pkm, int statUsed, Pokemon targetPokemon) {
 
-  }//Constructor
-  */
+  int pkmStatRequired;
+  int targetDefStat;
+  float STAB = 1;
 
-  ///////////
+  if (statUsed == Attack) {
 
-  // GETTER AND SETTERS
-  void setDamage(int dmg) { damage = dmg; } // setDamage
+    pkmStatRequired = pkm.Stats.getAttack();
+    targetDefStat = targetPokemon.Stats.getDef();
 
-  void setTexture(Texture txt) { movTexture = txt; } // setTexture
+  } else if (statUsed == SpecialAttack) {
 
-  void setName(String name) { movName = name; } // setName
+    pkmStatRequired = pkm.Stats.getSpAttack();
+    targetDefStat = targetPokemon.Stats.getSpDef();
 
-  void setSpr(Sprite spr) { movSprite = spr; } // setSprite
+  } // StatsUsed
 
-  void setType(int movType) { mType = movType; } // setType
+  if (pkm.getFirstType() == Movs::getMovType()) {
 
-  /////GETTERS
+    STAB = 1.5;
 
-  int getDamage() { return damage; } // getDamage
+  } //
 
-  Texture getTexture() { return movTexture; } // getTxt
+  /////////////////////////////////////////////
+  /////////////////////////////////////////////
+  ////////////////////////////////////////////
+  ///!!!!! DONT FORGET TO DO THE EFFECTIVENESS
+  ////////////////////////////////////////////
 
-  string getName() { return movName; } // getName
+  double attacking = (((((2 * pkm.getLevel()) / 5 + 2) * pkmStatRequired *
+                        (pkmStatRequired / targetDefStat)) /
+                       50) +
+                      2) *
+                     STAB;
 
-  Sprite getSpr() { return movSprite; } // getSpr
+  targetPokemon.HPdmg(attacking);
+} // Damaging
 
-  int getType() { return mType; } // getType
+// SETTERS
+void Movs::setMovType(int type) { movType = type; }
+void Movs::setMovDmg(int dmg) { movDamage = dmg; }
+void Movs::setMovName(std::string name) { movName = name; }
 
-}; /// mov
+// GETTERS
+int Movs::getMovType() { return movType; }
+int Movs::getMovDmg() { return movDamage; }
+std::string Movs::getMovName() { return movName; }

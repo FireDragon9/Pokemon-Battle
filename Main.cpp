@@ -1,5 +1,6 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
+#include "iniPokemon.cpp"
 #include <algorithm>
 #include <iostream>
 using namespace sf;
@@ -13,13 +14,11 @@ int main(int argc, char *argv[]) {
 
   RenderWindow window(vm, "Battle", Style::Default);
 
-  Pokemon pikachu("Pikachu");
-
   while (window.isOpen()) {
 
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 
-      std::cout << pikachu.getName();
+      std::cout << Charizard.getName();
 
       window.close();
 

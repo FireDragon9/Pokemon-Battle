@@ -1,15 +1,19 @@
 #include "Pokemon.h"
+#include "Movs.h"
 #include "SFML/include/Graphics.hpp"
-#include <string>
+#include <array>
+#include <iostream>
 
-Pokemon::Pokemon(std::string name, int lvl, int hp, int atk, int def, int spAtk,
-                 int spDef, int spd) {
+Pokemon::Pokemon(std::string name, int lvl, double hp, int atk, int def,
+                 int spAtk, int spDef, int spd) {
   // setting the information
   setName(name);
   setLevel(lvl);
 
   // setting the stats
   Stats.setHP(hp);
+
+  std::array<Movs, 4> pkmMovs;
 };
 
 // POKEMON INFORMATION
@@ -17,10 +21,37 @@ void Pokemon::setName(std::string &name) { pkmName = name; }
 
 void Pokemon::setLevel(int &lvl) { level = lvl; }
 
+void Pokemon::setFirstType(int type) { pkmType[0] = type; }
+
+void Pokemon::setSecondType(int type) { pkmType[1] = type; }
+
+///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////// BATTLE
+///////////////////////////////////////////////////////////
+
+void Pokemon::HPdmg(double damage) {
+
+  Stats.setHP(Stats.getHP() - damage);
+
+} // HPdmg
+
+////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
 // POKEMON STATS
 
+// getters
+std::string Pokemon::getName() { return pkmName; }
+
+int Pokemon::getLevel() { return level; }
+
+int Pokemon::getFirstType() const { return pkmType[0]; }
+int Pokemon::getSecondType() const { return pkmType[1]; }
+
 // SETTERS
-void Pokemon::Stats::setHP(int &hp) { HP = hp; }
+void Pokemon::Stats::setHP(double hp) { HP = hp; }
 
 void Pokemon::Stats::setAttack(int &atk) { Attack = atk; }
 
@@ -34,7 +65,7 @@ void Pokemon::Stats::setSpd(int &spd) { Speed = spd; }
 
 // GETTERS
 
-int Pokemon::Stats::getHP() { return HP; }
+double Pokemon::Stats::getHP() { return HP; }
 
 int Pokemon::Stats::getAttack() { return Attack; }
 
