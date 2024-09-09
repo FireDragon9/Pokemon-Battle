@@ -18,8 +18,6 @@ int main(int argc, char *argv[]) {
 
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 
-      std::cout << Charizard.getName();
-
       window.close();
 
     } // exit

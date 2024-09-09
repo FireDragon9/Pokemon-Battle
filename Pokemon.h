@@ -37,14 +37,18 @@ enum Types {
 class Pokemon {
 private:
   std::string pkmName;
-  int level;
+  int *level;
 
   int pkmType[2];
 
 public:
   // constructor
-  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
-          int spDef, int spd);
+  Pokemon(std::string &name, int &lvl, double &hp, int &atk, int &def,
+          int &spAtk, int &spDef, int &spd, int &firstType, int &secondType,
+          std::string &partyTxt, std::string &frontTxt, std::string &backTxt);
+
+  // Destructor
+  ~Pokemon();
 
   ////////////////////////
   ////////////////////////
@@ -103,20 +107,20 @@ public:
     // getters
     sf::Texture getPartyTxt();
     sf::Texture getFrontTxt();
-    sf::Texture getBackTexture();
+    sf::Texture getBackTxt();
 
     sf::Sprite getPartySpr();
     sf::Sprite getFrontSpr();
     sf::Sprite getBackSpr();
 
     // setters
-    void setPartyTxt(std::string partyTxt);
-    void setFrontTxt(std::string frontTxt);
-    void setBackTxt(std::string backTxt);
+    void setPartyTxt(const std::string &path);
+    void setFrontTxt(const std::string &path);
+    void setBackTxt(const std::string &path);
 
-    void setPartySpr(sf::Texture partyTxt);
-    void setFrontSpr(sf::Texture frontTxt);
-    void setBackSpr(sf::Texture backTxt);
+    void setPartySpr(const sf::Texture &txt);
+    void setFrontSpr(const sf::Texture &txt);
+    void setBackSpr(const sf::Texture &txt);
 
   } Draw;
 
@@ -128,7 +132,7 @@ public:
 
   // GETTING DAMAGED
 
-  void HPdmg(double damage);
+  void HPdmg(double &damage);
 
   ///////////////////////////////
   ///////////////////////////////
@@ -139,9 +143,9 @@ public:
 
   void setLevel(int &lvl);
 
-  void setFirstType(int type);
+  void setFirstType(int &type);
 
-  void setSecondType(int type);
+  void setSecondType(int &type);
 
   // getters
   std::string getName();
@@ -150,6 +154,8 @@ public:
 
   int getFirstType() const;
   int getSecondType() const;
+
+  /////////////////////////////////////////////////////////
 };
 
 #endif // POKEMON_H

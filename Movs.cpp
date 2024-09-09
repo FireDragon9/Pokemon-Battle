@@ -2,7 +2,8 @@
 #include "Pokemon.h"
 #include <string>
 
-Movs::Movs(std::string name, int type, int dmg) {
+/*
+Movs::Movs(std::string name, int type, int dmg, int PP, int MovStat) {
 
   setMovType(type);
 
@@ -20,24 +21,6 @@ void Movs::Damaging(Pokemon pkm, int statUsed, Pokemon targetPokemon) {
   int targetDefStat;
   float STAB = 1;
 
-  if (statUsed == Attack) {
-
-    pkmStatRequired = pkm.Stats.getAttack();
-    targetDefStat = targetPokemon.Stats.getDef();
-
-  } else if (statUsed == SpecialAttack) {
-
-    pkmStatRequired = pkm.Stats.getSpAttack();
-    targetDefStat = targetPokemon.Stats.getSpDef();
-
-  } // StatsUsed
-
-  if (pkm.getFirstType() == Movs::getMovType()) {
-
-    STAB = 1.5;
-
-  } //
-
   /////////////////////////////////////////////
   /////////////////////////////////////////////
   ////////////////////////////////////////////
@@ -54,11 +37,14 @@ void Movs::Damaging(Pokemon pkm, int statUsed, Pokemon targetPokemon) {
 } // Damaging
 
 // SETTERS
-void Movs::setMovType(int type) { movType = type; }
-void Movs::setMovDmg(int dmg) { movDamage = dmg; }
-void Movs::setMovName(std::string name) { movName = name; }
+void Movs::setMovType(int &type) { movType = type; }
+void Movs::setMovDmg(int &dmg) { movDamage = dmg; }
+void Movs::setMovPP(int &PP) { movPP = PP; }
+void Movs::setMovStat(int &stat) { movStat = stat; }
+void Movs::setMovName(std::string &name) { movName = name; }
 
 // GETTERS
 int Movs::getMovType() { return movType; }
 int Movs::getMovDmg() { return movDamage; }
 std::string Movs::getMovName() { return movName; }
+*/
