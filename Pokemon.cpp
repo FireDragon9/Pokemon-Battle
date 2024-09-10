@@ -8,10 +8,11 @@
 using namespace sf;
 using namespace std;
 
-Pokemon::Pokemon(string &name, int &lvl, double &hp, int &atk, int &def,
-                 int &spAtk, int &spDef, int &spd, int &firstType,
-                 int &secondType, string &partyTxt, string &frontTxt,
-                 string &backTxt) {
+Pokemon::Pokemon() {}
+
+Pokemon::Pokemon(string name, int lvl, double hp, int atk, int def, int spAtk,
+                 int spDef, int spd, int firstType, int secondType,
+                 string partyTxt, string frontTxt, string backTxt) {
   // setting the information
   setName(name);
   setLevel(lvl);
@@ -37,8 +38,6 @@ Pokemon::Pokemon(string &name, int &lvl, double &hp, int &atk, int &def,
   Stats.setSpAttack(spAtk);
   Stats.setSpDef(spDef);
   Stats.setSpd(spd);
-
-  std::array<Movs, 4> pkmMovs;
 };
 
 ///////DESTRUCTOR

@@ -43,9 +43,10 @@ private:
 
 public:
   // constructor
-  Pokemon(std::string &name, int &lvl, double &hp, int &atk, int &def,
-          int &spAtk, int &spDef, int &spd, int &firstType, int &secondType,
-          std::string &partyTxt, std::string &frontTxt, std::string &backTxt);
+  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
+          int spDef, int spd, int firstType, int secondType,
+          std::string partyTxt, std::string frontTxt, std::string backTxt);
+  Pokemon();
 
   // Destructor
   ~Pokemon();
