@@ -4,5 +4,5 @@
 
 CharizardTxt charizardTxt;
 
-Pokemon Charizard("Charizard", 36, 900, 80, 80, 120, 100, 70, FIRE, FLYING,
+Pokemon Charizard("Charizard", 900, 32, 21, 23, 43, 92, FIRE, FLYING,
                   charizardTxt.party, charizardTxt.front, charizardTxt.back);

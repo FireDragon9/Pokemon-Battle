@@ -36,20 +36,59 @@ enum Types {
 
 class Pokemon {
 private:
+  // Pokemon name
   std::string pkmName;
-  int *level;
 
+  // Texture
+  sf::Texture pkmPartyTexture;
+  sf::Texture pkmFrontTexture;
+  sf::Texture pkmBackTexture;
+
+  // Party
+  sf::Sprite pkmPartySprite;
+  sf::Sprite pkmFrontSprite;
+  sf::Sprite pkmBackSprite;
+
+  // Pokemon type(s)
   int pkmType[2];
+
+  //////////////////////////////////////////
+  ////////////////////////////////////////// PUBLIC
+  //////////////////////////////////////////
 
 public:
   // constructor
-  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
-          int spDef, int spd, int firstType, int secondType,
-          std::string partyTxt, std::string frontTxt, std::string backTxt);
+  Pokemon(std::string name, double hp, int atk, int def, int spAtk, int spDef,
+          int spd, int firstType, int secondType, std::string partyTxt,
+          std::string frontTxt, std::string backTxt);
   Pokemon();
 
   // Destructor
   ~Pokemon();
+
+  ////////////////////////
+  ////////////////////////
+  //////////////////////// SRRITE AND TEXTURE
+  ////////////////////////
+  ///////////////////////
+  // getters
+
+  sf::Texture getPartyTxt();
+  sf::Texture getFrontTxt();
+  sf::Texture getBackTxt();
+
+  sf::Sprite getPartySpr();
+  sf::Sprite getFrontSpr();
+  sf::Sprite getBackSpr();
+
+  // setters
+  void setPartyTxt(std::string path);
+  void setFrontTxt(std::string path);
+  void setBackTxt(std::string path);
+
+  void setPartySpr(sf::Texture &txt);
+  void setFrontSpr(sf::Texture &txt);
+  void setBackSpr(sf::Texture &txt);
 
   ////////////////////////
   ////////////////////////
@@ -93,38 +132,18 @@ public:
   ////////////////////////
   ///////////////////////
 
+  /*
   class Draw {
 
   private:
-    sf::Texture pkmPartyTexture;
-    sf::Texture pkmFrontTexture;
-    sf::Texture pkmBackTexture;
-
-    sf::Sprite pkmPartySprite;
-    sf::Sprite pkmFrontSprite;
-    sf::Sprite pkmBackSprite;
 
   public:
-    // getters
-    sf::Texture getPartyTxt();
-    sf::Texture getFrontTxt();
-    sf::Texture getBackTxt();
 
-    sf::Sprite getPartySpr();
-    sf::Sprite getFrontSpr();
-    sf::Sprite getBackSpr();
 
-    // setters
-    void setPartyTxt(const std::string &path);
-    void setFrontTxt(const std::string &path);
-    void setBackTxt(const std::string &path);
-
-    void setPartySpr(const sf::Texture &txt);
-    void setFrontSpr(const sf::Texture &txt);
-    void setBackSpr(const sf::Texture &txt);
+    bool returnSprite();
 
   } Draw;
-
+  */
   //////////////////////
   /////////////////////
   ///////////////////// BATTLE
@@ -142,7 +161,7 @@ public:
   // setters
   void setName(std::string &name);
 
-  void setLevel(int &lvl);
+  // void setLevel(int &lvl);
 
   void setFirstType(int &type);
 
@@ -151,7 +170,7 @@ public:
   // getters
   std::string getName();
 
-  int getLevel();
+  // int getLevel();
 
   int getFirstType() const;
   int getSecondType() const;
