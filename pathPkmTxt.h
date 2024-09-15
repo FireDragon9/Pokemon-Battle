@@ -13,4 +13,13 @@ struct CharizardTxt {
   CharizardTxt();
 };
 
+struct BlastoiseTxt {
+
+  string party;
+  string front;
+  string back;
+
+  BlastoiseTxt();
+};
+
 #endif

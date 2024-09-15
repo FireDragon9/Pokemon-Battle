@@ -1,10 +1,11 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
 #include "iniPokemon.h"
-#include "pathPkmTxt.h"
 #include <SFML/Graphics/Rect.hpp>
-#include <algorithm>
 #include <iostream>
+
+#include "BattleSystem.h"
+
 using namespace sf;
 
 int main(int argc, char *argv[]) {
@@ -36,8 +37,6 @@ int main(int argc, char *argv[]) {
   // 305
 
   /*
-  int PLAYER_POKEMON_X = 190;
-  int PLAYER_POKEMON_Y = 305;
 
   RectangleShape trainerPokemon(Vector2f(100, 16));
   trainerPokemon.setFillColor(Color::Red);
@@ -61,8 +60,6 @@ int main(int argc, char *argv[]) {
   while (window.isOpen()) {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 
-      std::cout << chari.back << endl;
-
       window.close();
 
     } // exit
@@ -71,7 +68,8 @@ int main(int argc, char *argv[]) {
     window.clear();
 
     window.draw(backgroundSpr);
-    window.draw(Charizard.getBackSpr());
+
+    battle(Blastoise, Charizard, window);
 
     // window.draw(trainerPokemon);
 

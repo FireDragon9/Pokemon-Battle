@@ -1,10 +1,12 @@
 #include "Pokemon.h"
 #include "Movs.h"
 #include "SFML/include/Graphics.hpp"
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <array>
 #include <iostream>
 #include <ostream>
+#include <string>
 
 using namespace sf;
 using namespace std;
@@ -111,6 +113,47 @@ void Pokemon::setFrontSpr(Texture &txt) {
 void Pokemon::setBackSpr(Texture &txt) {
   pkmBackSprite.setTexture(txt);
 } // back spr
+
+/// setting sprite pos
+
+void Pokemon::setSprPos(int &x, int &y, string spr) {
+
+  FloatRect sprRect;
+
+  if (spr == "FRONT") { // front
+
+    sprRect = pkmFrontSprite.getLocalBounds();
+
+    pkmFrontSprite.setOrigin(sprRect.left + sprRect.width / 2,
+                             sprRect.top + sprRect.height / 2);
+
+    pkmFrontSprite.setPosition(x, y);
+
+  } else if (spr == "BACK") { // back
+
+    sprRect = pkmBackSprite.getLocalBounds();
+
+    pkmBackSprite.setOrigin(sprRect.left + sprRect.width / 2,
+                            sprRect.top + sprRect.height / 2);
+
+    pkmBackSprite.setPosition(x, y);
+
+  } else if (spr == "PARTY") { // party
+
+    sprRect = pkmPartySprite.getLocalBounds();
+
+    pkmPartySprite.setOrigin(sprRect.left + sprRect.width / 2,
+                             sprRect.top + sprRect.height / 2);
+
+    pkmPartySprite.setPosition(x, y);
+
+  } else {
+
+    pkmFrontSprite.setPosition(0, 0);
+
+  } // else
+
+} // setSprPos
 
 /*
 bool Pokemon::Draw::returnSprite() {

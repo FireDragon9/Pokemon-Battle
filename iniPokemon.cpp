@@ -3,6 +3,10 @@
 #include "pathPkmTxt.h"
 
 CharizardTxt charizardTxt;
+BlastoiseTxt blastoiseTxt;
 
-Pokemon Charizard("Charizard", 900, 32, 21, 23, 43, 92, FIRE, FLYING,
+Pokemon Charizard("Charizard", 1200, 100, 100, 130, 120, 95, FIRE, FLYING,
                   charizardTxt.party, charizardTxt.front, charizardTxt.back);
+
+Pokemon Blastoise("Blastoise", 1500, 100, 120, 110, 130, 80, WATER, null,
+                  blastoiseTxt.party, blastoiseTxt.front, blastoiseTxt.back);

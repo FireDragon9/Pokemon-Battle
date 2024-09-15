@@ -5,5 +5,6 @@
 #include "pathPkmTxt.h"
 
 extern Pokemon Charizard;
+extern Pokemon Blastoise;
 
 #endif // !INI_POKEMON_H

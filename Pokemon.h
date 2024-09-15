@@ -68,7 +68,7 @@ public:
 
   ////////////////////////
   ////////////////////////
-  //////////////////////// SRRITE AND TEXTURE
+  //////////////////////// SPRITE AND TEXTURE
   ////////////////////////
   ///////////////////////
   // getters
@@ -89,6 +89,10 @@ public:
   void setPartySpr(sf::Texture &txt);
   void setFrontSpr(sf::Texture &txt);
   void setBackSpr(sf::Texture &txt);
+
+  // SETTING SPRITE POSITION
+
+  void setSprPos(int &x, int &y, std::string spr);
 
   ////////////////////////
   ////////////////////////
