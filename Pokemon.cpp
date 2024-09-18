@@ -13,12 +13,12 @@ using namespace std;
 
 Pokemon::Pokemon() {}
 
-Pokemon::Pokemon(string name, double hp, int atk, int def, int spAtk, int spDef,
-                 int spd, int firstType, int secondType, string partyTxt,
-                 string frontTxt, string backTxt) {
+Pokemon::Pokemon(string name, int lvl, double hp, int atk, int def, int spAtk,
+                 int spDef, int spd, int firstType, int secondType,
+                 string partyTxt, string frontTxt, string backTxt) {
   // setting the information
   setName(name);
-  // setLevel(lvl);
+  setLevel(lvl);
   //  setting types
   setFirstType(firstType);
   setSecondType(secondType);
@@ -59,13 +59,22 @@ Pokemon::~Pokemon() {
 //////////////////////////////////////////////////////////////
 
 // POKEMON INFORMATION
-void Pokemon::setName(string &name) { pkmName = name; }
+void Pokemon::setName(string &name) { this->pkmName = name; }
 
 // void Pokemon::setLevel(int &lvl) { *level = lvl; }
 
-void Pokemon::setFirstType(int &type) { pkmType[0] = type; }
+void Pokemon::setFirstType(int &type) { this->pkmType[0] = type; }
 
-void Pokemon::setSecondType(int &type) { pkmType[1] = type; }
+void Pokemon::setSecondType(int &type) { this->pkmType[1] = type; }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////// LEVEL
+///////////////////////////////////////////////////////////////
+
+void Pokemon::setLevel(int &lvl) { this->pkmLevel = lvl; }
+
+int Pokemon::getLevel() const { return this->pkmLevel; }
 
 /////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -76,14 +85,14 @@ void Pokemon::setSecondType(int &type) { pkmType[1] = type; }
 // TEXTURE GETTERS
 //
 
-Texture Pokemon::getPartyTxt() { return pkmPartyTexture; }
-Texture Pokemon::getFrontTxt() { return pkmFrontTexture; }
-Texture Pokemon::getBackTxt() { return pkmBackTexture; }
+Texture Pokemon::getPartyTxt() { return this->pkmPartyTexture; }
+Texture Pokemon::getFrontTxt() { return this->pkmFrontTexture; }
+Texture Pokemon::getBackTxt() { return this->pkmBackTexture; }
 
 // SPRITE GETTERS
-Sprite Pokemon::getPartySpr() { return pkmPartySprite; }
-Sprite Pokemon::getFrontSpr() { return pkmFrontSprite; }
-Sprite Pokemon::getBackSpr() { return pkmBackSprite; }
+Sprite Pokemon::getPartySpr() { return this->pkmPartySprite; }
+Sprite Pokemon::getFrontSpr() { return this->pkmFrontSprite; }
+Sprite Pokemon::getBackSpr() { return this->pkmBackSprite; }
 
 // TEXTURE SETTERS
 void Pokemon::setPartyTxt(string path) {
@@ -155,11 +164,6 @@ void Pokemon::setSprPos(int &x, int &y, string spr) {
 
 } // setSprPos
 
-/*
-bool Pokemon::Draw::returnSprite() {
-  return pkmFrontTexture.loadFromFile("Sprites/Pokémon/Back/Charizard.png");
-}
-*/
 ///////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////// BATTLE

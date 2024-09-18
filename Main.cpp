@@ -1,7 +1,7 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
 #include "iniPokemon.h"
-#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <iostream>
 
 #include "BattleSystem.h"
@@ -10,7 +10,9 @@ using namespace sf;
 
 int main(int argc, char *argv[]) {
 
-  CharizardTxt chari;
+  Font gameFont;
+
+  gameFont.loadFromFile("Fonts/GameFont.ttf");
 
   const int HORIZONTAL_WINDOW = 720;
   const int VERTICAL_WINDOW = 480;
@@ -69,7 +71,7 @@ int main(int argc, char *argv[]) {
 
     window.draw(backgroundSpr);
 
-    battle(Blastoise, Charizard, window);
+    battle(Charizard, Blastoise, window, gameFont);
 
     // window.draw(trainerPokemon);
 

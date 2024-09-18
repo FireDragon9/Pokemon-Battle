@@ -39,6 +39,10 @@ private:
   // Pokemon name
   std::string pkmName;
 
+  // Pokemon level
+
+  int pkmLevel;
+
   // Texture
   sf::Texture pkmPartyTexture;
   sf::Texture pkmFrontTexture;
@@ -58,13 +62,21 @@ private:
 
 public:
   // constructor
-  Pokemon(std::string name, double hp, int atk, int def, int spAtk, int spDef,
-          int spd, int firstType, int secondType, std::string partyTxt,
-          std::string frontTxt, std::string backTxt);
+  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
+          int spDef, int spd, int firstType, int secondType,
+          std::string partyTxt, std::string frontTxt, std::string backTxt);
   Pokemon();
 
   // Destructor
   ~Pokemon();
+
+  ///////////////////////////
+  /////////////////////////// LEVEL
+  ///////////////////////////
+
+  void setLevel(int &lvl);
+
+  int getLevel() const;
 
   ////////////////////////
   ////////////////////////
@@ -130,24 +142,6 @@ public:
 
   } Stats; // Anonymous class for abilities
 
-  /////////////////////////
-  ////////////////////////
-  /////////////////////// CLASS DRAW
-  ////////////////////////
-  ///////////////////////
-
-  /*
-  class Draw {
-
-  private:
-
-  public:
-
-
-    bool returnSprite();
-
-  } Draw;
-  */
   //////////////////////
   /////////////////////
   ///////////////////// BATTLE

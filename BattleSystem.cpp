@@ -5,10 +5,14 @@
 #include <iostream>
 
 using namespace sf;
+using namespace std;
 
 // using pass by value because in battle the stats can decrease or increase
 // but it doesnt affect outside battle
-void battle(Pokemon playerPkm, Pokemon enemyPkm, RenderWindow &window) {
+void battle(Pokemon playerPkm, Pokemon enemyPkm, RenderWindow &window,
+            Font &gameF) {
+
+  drawUI(playerPkm, enemyPkm, window, gameF);
 
   drawPkm(playerPkm, enemyPkm, window);
 
@@ -67,3 +71,79 @@ void drawPkm(Pokemon &playerPkm, Pokemon &enemyPkm, RenderWindow &window) {
   window.draw(enemyPkm.getFrontSpr());
 
 } // void drawPkm()
+
+//////////////////////////////////////////////////////
+
+void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
+            Font &gameF) {
+
+  // player Pokemon UI
+
+  // PKMNAME
+
+  Text playerPkmName;
+  playerPkmName.setFont(gameF);
+
+  playerPkmName.setString(trainerPkm.getName());
+
+  FloatRect pPkmNameRec;
+
+  pPkmNameRec = playerPkmName.getLocalBounds();
+
+  playerPkmName.setOrigin(pPkmNameRec.left - pPkmNameRec.width / 2,
+                          pPkmNameRec.top - pPkmNameRec.height / 2);
+
+  playerPkmName.setCharacterSize(37);
+
+  playerPkmName.setFillColor(Color::Black);
+
+  playerPkmName.setPosition(360, 228);
+
+  // PKM LEVEL
+
+  Text playerPkmLvl;
+  playerPkmLvl.setFont(gameF);
+
+  playerPkmLvl.setString(to_string(trainerPkm.getLevel()));
+
+  FloatRect pPkmLvlRec;
+
+  pPkmLvlRec = playerPkmName.getLocalBounds();
+
+  playerPkmLvl.setOrigin(pPkmLvlRec.left - pPkmLvlRec.width / 2,
+                         pPkmLvlRec.top - pPkmLvlRec.height / 2);
+
+  playerPkmLvl.setCharacterSize(35);
+
+  playerPkmLvl.setFillColor(Color::Black);
+
+  playerPkmLvl.setPosition(568, 232);
+
+  ///////////////////////////////////
+
+  /// TEXTURE AND SPRITE
+
+  Texture playerPkmUItxt;
+  playerPkmUItxt.loadFromFile("Sprites/Battle/UI/playerPkm.png");
+
+  Sprite playerPkmUIspr;
+  playerPkmUIspr.setTexture(playerPkmUItxt);
+
+  // setting setting player Pokemon UI origin
+
+  FloatRect playerPkmUIrect = playerPkmUIspr.getLocalBounds();
+
+  playerPkmUIspr.setOrigin(playerPkmUIrect.left - playerPkmUIrect.width / 2,
+                           playerPkmUIrect.top - playerPkmUIrect.height / 2);
+
+  playerPkmUIspr.setPosition(200, 167);
+
+  ///////////////////// DRAW
+
+  window.draw(playerPkmUIspr);
+
+  window.draw(playerPkmName);
+
+  window.draw(playerPkmLvl);
+
+} // drawUI();
