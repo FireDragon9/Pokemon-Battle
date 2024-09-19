@@ -31,6 +31,13 @@ enum Types {
 
 };
 
+enum Gender {
+
+  MALE,
+  FEMALE
+
+};
+
 //////////////////
 /////////////////
 
@@ -42,6 +49,13 @@ private:
   // Pokemon level
 
   int pkmLevel;
+
+  // Pokemon Gender
+
+  int pkmGender;
+
+  sf::Texture pkmGenderTxt;
+  sf::Sprite pkmGenderSpr;
 
   // Texture
   sf::Texture pkmPartyTexture;
@@ -62,8 +76,8 @@ private:
 
 public:
   // constructor
-  Pokemon(std::string name, int lvl, double hp, int atk, int def, int spAtk,
-          int spDef, int spd, int firstType, int secondType,
+  Pokemon(std::string name, int lvl, int gender, double hp, int atk, int def,
+          int spAtk, int spDef, int spd, int firstType, int secondType,
           std::string partyTxt, std::string frontTxt, std::string backTxt);
   Pokemon();
 
@@ -159,7 +173,9 @@ public:
   // setters
   void setName(std::string &name);
 
-  // void setLevel(int &lvl);
+  void setGender(int &gender);
+
+  void setGenderPos(int &x, int &y);
 
   void setFirstType(int &type);
 
@@ -168,7 +184,7 @@ public:
   // getters
   std::string getName();
 
-  // int getLevel();
+  sf::Sprite getGender() const;
 
   int getFirstType() const;
   int getSecondType() const;

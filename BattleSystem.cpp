@@ -2,6 +2,7 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
 #include "SFML/include/System.hpp"
+#include <SFML/Graphics/Rect.hpp>
 #include <iostream>
 
 using namespace sf;
@@ -119,6 +120,13 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
 
   playerPkmLvl.setPosition(568, 232);
 
+  // PLAYER PKM GENDER
+
+  int PKMGENDER_POS_X = playerPkmName.getPosition().x + 170;
+  int PKMGENDER_POS_Y = 225;
+
+  trainerPkm.setGenderPos(PKMGENDER_POS_X, PKMGENDER_POS_Y);
+
   ///////////////////////////////////
 
   /// TEXTURE AND SPRITE
@@ -143,6 +151,8 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
   window.draw(playerPkmUIspr);
 
   window.draw(playerPkmName);
+
+  window.draw(trainerPkm.getGender());
 
   window.draw(playerPkmLvl);
 

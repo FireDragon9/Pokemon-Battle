@@ -1,8 +1,6 @@
 #include "Pokemon.h"
 #include "Movs.h"
 #include "SFML/include/Graphics.hpp"
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <array>
 #include <iostream>
 #include <ostream>
@@ -13,12 +11,13 @@ using namespace std;
 
 Pokemon::Pokemon() {}
 
-Pokemon::Pokemon(string name, int lvl, double hp, int atk, int def, int spAtk,
-                 int spDef, int spd, int firstType, int secondType,
+Pokemon::Pokemon(string name, int lvl, int gender, double hp, int atk, int def,
+                 int spAtk, int spDef, int spd, int firstType, int secondType,
                  string partyTxt, string frontTxt, string backTxt) {
   // setting the information
   setName(name);
   setLevel(lvl);
+  setGender(gender);
   //  setting types
   setFirstType(firstType);
   setSecondType(secondType);
@@ -61,7 +60,23 @@ Pokemon::~Pokemon() {
 // POKEMON INFORMATION
 void Pokemon::setName(string &name) { this->pkmName = name; }
 
-// void Pokemon::setLevel(int &lvl) { *level = lvl; }
+void Pokemon::setGender(int &gender) {
+
+  this->pkmGender = gender;
+
+  if (this->pkmGender == MALE) {
+
+    this->pkmGenderTxt.loadFromFile("Sprites/Information/Male.png");
+
+  } else if (this->pkmGender == FEMALE) {
+
+    this->pkmGenderTxt.loadFromFile("Sprites/Information/Female.png");
+
+  } // else if female
+
+  this->pkmGenderSpr.setTexture(this->pkmGenderTxt);
+
+} // setGender
 
 void Pokemon::setFirstType(int &type) { this->pkmType[0] = type; }
 
@@ -122,6 +137,19 @@ void Pokemon::setFrontSpr(Texture &txt) {
 void Pokemon::setBackSpr(Texture &txt) {
   pkmBackSprite.setTexture(txt);
 } // back spr
+
+// Setting gender sprite pos
+
+void Pokemon::setGenderPos(int &x, int &y) {
+
+  FloatRect pPkmGenderRec;
+  pPkmGenderRec = this->pkmGenderSpr.getLocalBounds();
+
+  this->pkmGenderSpr.setOrigin(pPkmGenderRec.left - pPkmGenderRec.width / 2,
+                               pPkmGenderRec.top - pPkmGenderRec.height / 2);
+
+  this->pkmGenderSpr.setPosition(x, y);
+}
 
 /// setting sprite pos
 
@@ -184,7 +212,7 @@ void Pokemon::HPdmg(double &damage) {
 // getters
 std::string Pokemon::getName() { return pkmName; }
 
-// int Pokemon::getLevel() { return *level; }
+Sprite Pokemon::getGender() const { return pkmGenderSpr; }
 
 int Pokemon::getFirstType() const { return pkmType[0]; }
 int Pokemon::getSecondType() const { return pkmType[1]; }

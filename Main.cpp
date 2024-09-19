@@ -34,28 +34,6 @@ int main(int argc, char *argv[]) {
 
   backgroundSpr.setPosition(0, 0);
 
-  // SQUARES
-  // 190
-  // 305
-
-  /*
-
-  RectangleShape trainerPokemon(Vector2f(100, 16));
-  trainerPokemon.setFillColor(Color::Red);
-
-  trainerPokemon.setOrigin(50, 8);
-  trainerPokemon.setPosition(PLAYER_POKEMON_X, PLAYER_POKEMON_Y);
-
-  //////////////////
-
-  FloatRect pkmRect = Charizard.getBackSpr().getLocalBounds();
-
-  Charizard.getBackSpr().setOrigin(pkmRect.left + pkmRect.width / 2.0f,
-                                   pkmRect.top + pkmRect.height / 2.0f);
-
-  Charizard.getBackSpr().setPosition(PLAYER_POKEMON_X, PLAYER_POKEMON_Y);
-  */
-
   ///////////////////
   ///////////////////////////////
 
