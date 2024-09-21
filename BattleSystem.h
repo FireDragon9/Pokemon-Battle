@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-void battle(Pokemon playerPkm, Pokemon enemyPkm, sf::RenderWindow &window,
+void battle(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
             sf::Font &gameF);
 
 void drawPkm(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window);

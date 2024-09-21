@@ -105,9 +105,9 @@ Texture Pokemon::getFrontTxt() { return this->pkmFrontTexture; }
 Texture Pokemon::getBackTxt() { return this->pkmBackTexture; }
 
 // SPRITE GETTERS
-Sprite Pokemon::getPartySpr() { return this->pkmPartySprite; }
-Sprite Pokemon::getFrontSpr() { return this->pkmFrontSprite; }
-Sprite Pokemon::getBackSpr() { return this->pkmBackSprite; }
+Sprite &Pokemon::getPartySpr() { return this->pkmPartySprite; }
+Sprite &Pokemon::getFrontSpr() { return this->pkmFrontSprite; }
+Sprite &Pokemon::getBackSpr() { return this->pkmBackSprite; }
 
 // TEXTURE SETTERS
 void Pokemon::setPartyTxt(string path) {
@@ -153,42 +153,15 @@ void Pokemon::setGenderPos(int &x, int &y) {
 
 /// setting sprite pos
 
-void Pokemon::setSprPos(int &x, int &y, string spr) {
+void Pokemon::setSprPos(int &x, int &y, Sprite &spr) {
 
   FloatRect sprRect;
+  sprRect = spr.getLocalBounds();
 
-  if (spr == "FRONT") { // front
+  spr.setOrigin(sprRect.left + sprRect.width / 2,
+                sprRect.top + sprRect.height / 2);
 
-    sprRect = pkmFrontSprite.getLocalBounds();
-
-    pkmFrontSprite.setOrigin(sprRect.left + sprRect.width / 2,
-                             sprRect.top + sprRect.height / 2);
-
-    pkmFrontSprite.setPosition(x, y);
-
-  } else if (spr == "BACK") { // back
-
-    sprRect = pkmBackSprite.getLocalBounds();
-
-    pkmBackSprite.setOrigin(sprRect.left + sprRect.width / 2,
-                            sprRect.top + sprRect.height / 2);
-
-    pkmBackSprite.setPosition(x, y);
-
-  } else if (spr == "PARTY") { // party
-
-    sprRect = pkmPartySprite.getLocalBounds();
-
-    pkmPartySprite.setOrigin(sprRect.left + sprRect.width / 2,
-                             sprRect.top + sprRect.height / 2);
-
-    pkmPartySprite.setPosition(x, y);
-
-  } else {
-
-    pkmFrontSprite.setPosition(0, 0);
-
-  } // else
+  spr.setPosition(x, y);
 
 } // setSprPos
 

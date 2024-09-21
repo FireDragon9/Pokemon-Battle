@@ -103,9 +103,9 @@ public:
   sf::Texture getFrontTxt();
   sf::Texture getBackTxt();
 
-  sf::Sprite getPartySpr();
-  sf::Sprite getFrontSpr();
-  sf::Sprite getBackSpr();
+  sf::Sprite &getPartySpr();
+  sf::Sprite &getFrontSpr();
+  sf::Sprite &getBackSpr();
 
   // setters
   void setPartyTxt(std::string path);
@@ -118,7 +118,7 @@ public:
 
   // SETTING SPRITE POSITION
 
-  void setSprPos(int &x, int &y, std::string spr);
+  void setSprPos(int &x, int &y, sf::Sprite &spr);
 
   ////////////////////////
   ////////////////////////
