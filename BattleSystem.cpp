@@ -2,24 +2,28 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
 #include "SFML/include/System.hpp"
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include <iostream>
 
 using namespace sf;
 using namespace std;
-
-// using pass by value because in battle the stats can decrease or increase
+/*
 // but it doesnt affect outside battle
 void battle(Pokemon &playerPkm, Pokemon &enemyPkm, RenderWindow &window,
             Font &gameF) {
 
-  drawUI(playerPkm, enemyPkm, window, gameF);
+  // playerPkm.setSprPos(PLAYER_POKEMON_X, PLAYER_POKEMON_Y,
+  //                  playerPkm.getBackSpr());
+
+  cout << "playerPkm.getBackSpr in battle() : " << &playerPkm.getBackSpr()
+       << endl;
+
+  // drawUI(playerPkm, enemyPkm, window, gameF);
 
   drawPkm(playerPkm, enemyPkm, window);
 
   while (playerPkm.Stats.getHP() > 0 && enemyPkm.Stats.getHP() > 0) {
 
+    // dev only
     break;
   } // while
 
@@ -58,7 +62,7 @@ void drawPkm(Pokemon &playerPkm, Pokemon &enemyPkm, RenderWindow &window) {
 
 //////////////////////////////////////////////////////
 
-void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
+void drawUI(Pokemon &playerPkm, Pokemon &enemyPkm, RenderWindow &window,
             Font &gameF) {
 
   // player Pokemon UI
@@ -68,7 +72,7 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
   Text playerPkmName;
   playerPkmName.setFont(gameF);
 
-  playerPkmName.setString(trainerPkm.getName());
+  playerPkmName.setString(playerPkm.getName());
 
   FloatRect pPkmNameRec;
 
@@ -88,7 +92,7 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
   Text playerPkmLvl;
   playerPkmLvl.setFont(gameF);
 
-  playerPkmLvl.setString(to_string(trainerPkm.getLevel()));
+  playerPkmLvl.setString(to_string(playerPkm.getLevel()));
 
   FloatRect pPkmLvlRec;
 
@@ -108,7 +112,7 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
   int PKMGENDER_POS_X = playerPkmName.getPosition().x + 170;
   int PKMGENDER_POS_Y = 225;
 
-  trainerPkm.setGenderPos(PKMGENDER_POS_X, PKMGENDER_POS_Y);
+  playerPkm.setGenderPos(PKMGENDER_POS_X, PKMGENDER_POS_Y);
 
   ///////////////////////////////////
 
@@ -135,8 +139,10 @@ void drawUI(Pokemon &trainerPkm, Pokemon &enemyPkm, RenderWindow &window,
 
   window.draw(playerPkmName);
 
-  window.draw(trainerPkm.getGender());
+  window.draw(playerPkm.getGender());
 
   window.draw(playerPkmLvl);
 
 } // drawUI();
+
+*/

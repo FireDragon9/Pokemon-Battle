@@ -1,11 +1,9 @@
 #pragma once
 #ifndef POKEMON_H
 #define POKEMON_H
+#include <SFML/Graphics/Texture.hpp>
 
 #include "SFML/include/Graphics.hpp"
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/String.hpp>
 #include <string>
 
@@ -38,6 +36,14 @@ enum Gender {
 
 };
 
+enum sprites {
+
+  PARTY,
+  FRONT,
+  BACK
+
+};
+
 //////////////////
 /////////////////
 
@@ -53,19 +59,13 @@ private:
   // Pokemon Gender
 
   int pkmGender;
+  // Pokemon Textures
+  static sf::Texture pkmTxt[3];
 
-  sf::Texture pkmGenderTxt;
+  // Sprites
+  static sf::Sprite pkmSprites[3];
+
   sf::Sprite pkmGenderSpr;
-
-  // Texture
-  sf::Texture pkmPartyTexture;
-  sf::Texture pkmFrontTexture;
-  sf::Texture pkmBackTexture;
-
-  // Party
-  sf::Sprite pkmPartySprite;
-  sf::Sprite pkmFrontSprite;
-  sf::Sprite pkmBackSprite;
 
   // Pokemon type(s)
   int pkmType[2];
@@ -76,10 +76,12 @@ private:
 
 public:
   // constructor
-  Pokemon(std::string name, int lvl, int gender, double hp, int atk, int def,
-          int spAtk, int spDef, int spd, int firstType, int secondType,
-          std::string partyTxt, std::string frontTxt, std::string backTxt);
   Pokemon();
+  /*Pokemon(std::string name, int lvl, int gender, double hp, int atk, int def,
+          int spAtk, int spDef, int spd, int firstType, int secondType,
+          sf::Texture &partyTxt, sf::Texture &frontTxt, sf::Texture &backTxt,
+          std::string pathTxt);
+  */
 
   // Destructor
   ~Pokemon();
@@ -94,31 +96,16 @@ public:
 
   ////////////////////////
   ////////////////////////
-  //////////////////////// SPRITE AND TEXTURE
+  //////////////////////// SPRITE
   ////////////////////////
   ///////////////////////
   // getters
 
-  sf::Texture getPartyTxt();
-  sf::Texture getFrontTxt();
-  sf::Texture getBackTxt();
-
-  sf::Sprite &getPartySpr();
-  sf::Sprite &getFrontSpr();
-  sf::Sprite &getBackSpr();
-
-  // setters
-  void setPartyTxt(std::string path);
-  void setFrontTxt(std::string path);
-  void setBackTxt(std::string path);
-
-  void setPartySpr(sf::Texture &txt);
-  void setFrontSpr(sf::Texture &txt);
-  void setBackSpr(sf::Texture &txt);
+  // sf::Sprite &getSpr(int &spr);
 
   // SETTING SPRITE POSITION
 
-  void setSprPos(int &x, int &y, sf::Sprite &spr);
+  static void setSprPos(int &x, int &y, int spr);
 
   ////////////////////////
   ////////////////////////
@@ -182,7 +169,7 @@ public:
   void setSecondType(int &type);
 
   // getters
-  std::string getName();
+  std::string getName() const;
 
   sf::Sprite getGender() const;
 

@@ -9,38 +9,13 @@
 using namespace sf;
 using namespace std;
 
-Pokemon::Pokemon() {}
+Pokemon::Pokemon(){};
 
-Pokemon::Pokemon(string name, int lvl, int gender, double hp, int atk, int def,
-                 int spAtk, int spDef, int spd, int firstType, int secondType,
-                 string partyTxt, string frontTxt, string backTxt) {
-  // setting the information
-  setName(name);
-  setLevel(lvl);
-  setGender(gender);
-  //  setting types
-  setFirstType(firstType);
-  setSecondType(secondType);
+// Pokemon Textures
+Texture Pokemon::pkmTxt[3];
 
-  // setting texture and sprite
-  // textures
-  setPartyTxt(partyTxt);
-  setFrontTxt(frontTxt);
-  setBackTxt(backTxt);
-
-  // sprites
-  setPartySpr(pkmPartyTexture);
-  setFrontSpr(pkmFrontTexture);
-  setBackSpr(pkmBackTexture);
-
-  // setting the stats
-  Stats.setHP(hp);
-  Stats.setAttack(atk);
-  Stats.setDef(def);
-  Stats.setSpAttack(spAtk);
-  Stats.setSpDef(spDef);
-  Stats.setSpd(spd);
-};
+// Sprites
+Sprite Pokemon::pkmSprites[3];
 
 ///////DESTRUCTOR
 Pokemon::~Pokemon() {
@@ -60,23 +35,7 @@ Pokemon::~Pokemon() {
 // POKEMON INFORMATION
 void Pokemon::setName(string &name) { this->pkmName = name; }
 
-void Pokemon::setGender(int &gender) {
-
-  this->pkmGender = gender;
-
-  if (this->pkmGender == MALE) {
-
-    this->pkmGenderTxt.loadFromFile("Sprites/Information/Male.png");
-
-  } else if (this->pkmGender == FEMALE) {
-
-    this->pkmGenderTxt.loadFromFile("Sprites/Information/Female.png");
-
-  } // else if female
-
-  this->pkmGenderSpr.setTexture(this->pkmGenderTxt);
-
-} // setGender
+void Pokemon::setGender(int &gender) {} // setGender
 
 void Pokemon::setFirstType(int &type) { this->pkmType[0] = type; }
 
@@ -97,47 +56,6 @@ int Pokemon::getLevel() const { return this->pkmLevel; }
 ////////////////////////////////////////////////////////////// DRAW
 //////////////////////////////////////////////////////////////
 
-// TEXTURE GETTERS
-//
-
-Texture Pokemon::getPartyTxt() { return this->pkmPartyTexture; }
-Texture Pokemon::getFrontTxt() { return this->pkmFrontTexture; }
-Texture Pokemon::getBackTxt() { return this->pkmBackTexture; }
-
-// SPRITE GETTERS
-Sprite &Pokemon::getPartySpr() { return this->pkmPartySprite; }
-Sprite &Pokemon::getFrontSpr() { return this->pkmFrontSprite; }
-Sprite &Pokemon::getBackSpr() { return this->pkmBackSprite; }
-
-// TEXTURE SETTERS
-void Pokemon::setPartyTxt(string path) {
-  pkmPartyTexture.loadFromFile(path);
-} // partytxt
-
-void Pokemon::setFrontTxt(string path) {
-  pkmFrontTexture.loadFromFile(path);
-} // frontxt
-
-void Pokemon::setBackTxt(string path) {
-  pkmBackTexture.loadFromFile(path);
-
-} // backtxt
-
-// SPRITE SETTERS
-
-void Pokemon::setPartySpr(Texture &txt) {
-  pkmPartySprite.setTexture(txt);
-
-} // party spr
-
-void Pokemon::setFrontSpr(Texture &txt) {
-  pkmFrontSprite.setTexture(txt);
-} // front spr
-
-void Pokemon::setBackSpr(Texture &txt) {
-  pkmBackSprite.setTexture(txt);
-} // back spr
-
 // Setting gender sprite pos
 
 void Pokemon::setGenderPos(int &x, int &y) {
@@ -149,19 +67,19 @@ void Pokemon::setGenderPos(int &x, int &y) {
                                pPkmGenderRec.top - pPkmGenderRec.height / 2);
 
   this->pkmGenderSpr.setPosition(x, y);
-}
+} // gender pos
 
 /// setting sprite pos
 
-void Pokemon::setSprPos(int &x, int &y, Sprite &spr) {
+void Pokemon::setSprPos(int &x, int &y, int spr) {
 
   FloatRect sprRect;
-  sprRect = spr.getLocalBounds();
+  sprRect = pkmSprites[spr].getLocalBounds();
 
-  spr.setOrigin(sprRect.left + sprRect.width / 2,
-                sprRect.top + sprRect.height / 2);
+  pkmSprites[spr].setOrigin(sprRect.left + sprRect.width / 2,
+                            sprRect.top + sprRect.height / 2);
 
-  spr.setPosition(x, y);
+  pkmSprites[spr].setPosition(x, y);
 
 } // setSprPos
 
@@ -183,7 +101,7 @@ void Pokemon::HPdmg(double &damage) {
 // POKEMON STATS
 
 // getters
-std::string Pokemon::getName() { return pkmName; }
+std::string Pokemon::getName() const { return pkmName; }
 
 Sprite Pokemon::getGender() const { return pkmGenderSpr; }
 
