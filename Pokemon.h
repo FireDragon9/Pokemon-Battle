@@ -1,4 +1,5 @@
-#pragma once
+#include <SFML/Graphics/Sprite.hpp>
+#pragma ONCE
 #ifndef POKEMON_H
 #define POKEMON_H
 #include <SFML/Graphics/Texture.hpp>
@@ -57,15 +58,7 @@ private:
   int pkmLevel;
 
   // Pokemon Gender
-
   int pkmGender;
-  // Pokemon Textures
-  static sf::Texture pkmTxt[3];
-
-  // Sprites
-  static sf::Sprite pkmSprites[3];
-
-  sf::Sprite pkmGenderSpr;
 
   // Pokemon type(s)
   int pkmType[2];
@@ -75,16 +68,25 @@ private:
   //////////////////////////////////////////
 
 public:
+  // sprites
+  sf::Sprite *pkmSprites[3];
+
+  ~Pokemon() {}
+
+  // Sprites
+
+  // GETTERS
+  sf::Sprite getPartySpr();
+  sf::Sprite getFrontSpr();
+  sf::Sprite getBackSpr();
+
+  // SETTING POS
+  void setPartySprPos(unsigned int x, unsigned int y);
+  void setFrontSprPos(unsigned int x, unsigned int y);
+  void setBackSprPos(unsigned int x, unsigned int y);
+
   // constructor
   Pokemon();
-  /*Pokemon(std::string name, int lvl, int gender, double hp, int atk, int def,
-          int spAtk, int spDef, int spd, int firstType, int secondType,
-          sf::Texture &partyTxt, sf::Texture &frontTxt, sf::Texture &backTxt,
-          std::string pathTxt);
-  */
-
-  // Destructor
-  ~Pokemon();
 
   ///////////////////////////
   /////////////////////////// LEVEL
@@ -101,11 +103,9 @@ public:
   ///////////////////////
   // getters
 
-  // sf::Sprite &getSpr(int &spr);
-
   // SETTING SPRITE POSITION
 
-  static void setSprPos(int &x, int &y, int spr);
+  void setSprPos(int x, int y, int spr);
 
   ////////////////////////
   ////////////////////////
@@ -158,7 +158,7 @@ public:
   ///////////////////////////////
 
   // setters
-  void setName(std::string &name);
+  void setName(std::string name);
 
   void setGender(int &gender);
 
@@ -169,7 +169,7 @@ public:
   void setSecondType(int &type);
 
   // getters
-  std::string getName() const;
+  virtual std::string getName();
 
   sf::Sprite getGender() const;
 

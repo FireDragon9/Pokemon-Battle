@@ -1,3 +1,6 @@
+#include <SFML/Graphics/Sprite.hpp>
+#include <string>
+#pragma ONCE
 #ifndef CHARIZARD_H
 #define CHARIZARD_H
 
@@ -8,19 +11,10 @@
 class Charizard : public Pokemon {
 
 private:
-  std::string pkmName = "Charizard";
-
-  static sf::Texture pkmTxt[3];
-
   ///////////////
 
 public:
-  static bool loadTxt;
-
-  static sf::Sprite pkmSprites[3];
-
-  // Constructor
-  Charizard();
+  Charizard(std::string name);
 
   // Charizard Stats
   class Stats {

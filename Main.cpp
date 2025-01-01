@@ -1,7 +1,5 @@
 #include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <iostream>
 #include <ostream>
 
@@ -24,11 +22,6 @@ int main(int argc, char *argv[]) {
 
   RenderWindow window(vm, "Battle", Style::Default);
 
-  class Charizard charizard1;
-  class Charizard charizard2;
-
-  cout << "Charizard 1: " << &charizard1.pkmSprites[FRONT] << endl;
-  cout << "Charizard 2: " << &charizard2.pkmSprites[FRONT] << endl;
   //////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////// BACKGROUND BATTTTLE
   /////////////////////////////////////////////////////////ITS A TEST
@@ -44,10 +37,11 @@ int main(int argc, char *argv[]) {
 
   ///////////////////
   ///////////////////////////////
+  Charizard charizard1("charizard 1");
+  Charizard charizard2("charizard 2");
 
   while (window.isOpen()) {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-
       window.close();
 
     } // exit
@@ -55,9 +49,9 @@ int main(int argc, char *argv[]) {
     // cleaning
     window.clear();
 
-    window.draw(backgroundSpr);
+    battle(charizard1, charizard2, window, gameFont);
 
-    // battle(Chari, Chari, window, gameFont);
+    // window.draw(backgroundSpr);
 
     //  displaying
     window.display();

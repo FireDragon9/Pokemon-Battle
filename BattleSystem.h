@@ -2,6 +2,7 @@
 #define BATTLESYSTEM_H
 
 #include "Pokemon.h"
+#include "Pokemon/Headers/Charizard.h"
 #include "SFML/include/Graphics.hpp"
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

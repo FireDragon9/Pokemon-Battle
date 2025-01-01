@@ -1,29 +1,12 @@
 #include "Pokemon.h"
 #include "Movs.h"
 #include "SFML/include/Graphics.hpp"
-#include <array>
-#include <iostream>
-#include <ostream>
 #include <string>
 
 using namespace sf;
 using namespace std;
 
 Pokemon::Pokemon(){};
-
-// Pokemon Textures
-Texture Pokemon::pkmTxt[3];
-
-// Sprites
-Sprite Pokemon::pkmSprites[3];
-
-///////DESTRUCTOR
-Pokemon::~Pokemon() {
-
-  // delete[] level;
-  // level = 0;
-
-} // DESTRUCTOR
 
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
@@ -33,7 +16,7 @@ Pokemon::~Pokemon() {
 //////////////////////////////////////////////////////////////
 
 // POKEMON INFORMATION
-void Pokemon::setName(string &name) { this->pkmName = name; }
+void Pokemon::setName(string name) { this->pkmName = name; }
 
 void Pokemon::setGender(int &gender) {} // setGender
 
@@ -58,32 +41,25 @@ int Pokemon::getLevel() const { return this->pkmLevel; }
 
 // Setting gender sprite pos
 
-void Pokemon::setGenderPos(int &x, int &y) {
-
-  FloatRect pPkmGenderRec;
-  pPkmGenderRec = this->pkmGenderSpr.getLocalBounds();
-
-  this->pkmGenderSpr.setOrigin(pPkmGenderRec.left - pPkmGenderRec.width / 2,
-                               pPkmGenderRec.top - pPkmGenderRec.height / 2);
-
-  this->pkmGenderSpr.setPosition(x, y);
-} // gender pos
-
 /// setting sprite pos
+void Pokemon::setPartySprPos(unsigned int x, unsigned int y) {
+  pkmSprites[PARTY]->setPosition(x, y);
+}
+void Pokemon::setFrontSprPos(unsigned int x, unsigned int y) {
+  pkmSprites[FRONT]->setPosition(x, y);
+}
+void Pokemon::setBackSprPos(unsigned int x, unsigned int y) {
+  pkmSprites[BACK]->setPosition(x, y);
+}
 
-void Pokemon::setSprPos(int &x, int &y, int spr) {
+// GETTING SPRITES
 
-  FloatRect sprRect;
-  sprRect = pkmSprites[spr].getLocalBounds();
+Sprite Pokemon::getPartySpr() { return *pkmSprites[PARTY]; }
 
-  pkmSprites[spr].setOrigin(sprRect.left + sprRect.width / 2,
-                            sprRect.top + sprRect.height / 2);
+Sprite Pokemon::getFrontSpr() { return *pkmSprites[FRONT]; }
 
-  pkmSprites[spr].setPosition(x, y);
-
-} // setSprPos
-
-///////////////////////////////////////////////////////////
+Sprite Pokemon::getBackSpr() { return *pkmSprites[BACK]; }
+//////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////// BATTLE
 ///////////////////////////////////////////////////////////
@@ -101,9 +77,7 @@ void Pokemon::HPdmg(double &damage) {
 // POKEMON STATS
 
 // getters
-std::string Pokemon::getName() const { return pkmName; }
-
-Sprite Pokemon::getGender() const { return pkmGenderSpr; }
+std::string Pokemon::getName() { return pkmName; }
 
 int Pokemon::getFirstType() const { return pkmType[0]; }
 int Pokemon::getSecondType() const { return pkmType[1]; }

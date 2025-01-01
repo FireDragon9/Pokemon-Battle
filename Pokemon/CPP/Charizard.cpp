@@ -1,26 +1,17 @@
 #include "../Headers/Charizard.h"
-#include "../../SFML/include/Graphics.hpp"
-#include <filesystem>
+#include "../LoadTextures/LoadCharizard.cpp"
 #include <iostream>
+#include <ostream>
 using namespace std;
+using namespace sf;
 
-sf::Texture Charizard::pkmTxt[3];
-sf::Sprite Charizard::pkmSprites[3];
+Charizard::Charizard(string name) {
 
-bool Charizard::loadTxt = false;
+  loadTexture();
 
-Charizard::Charizard() {
+  setName(name);
 
-  if (!loadTxt) {
-
-    pkmTxt[PARTY].loadFromFile("Sprites/Pokemon/Party/Charizard.png");
-    pkmTxt[FRONT].loadFromFile("Sprites/Pokemon/Front/Charizard.png");
-    pkmTxt[BACK].loadFromFile("Sprites/Pokemon/Back/Charizard.png");
-
-    pkmSprites[PARTY].setTexture(pkmTxt[PARTY]);
-    pkmSprites[FRONT].setTexture(pkmTxt[FRONT]);
-    pkmSprites[BACK].setTexture(pkmTxt[BACK]);
-
-    loadTxt = true;
-  }
+  pkmSprites[PARTY] = &charizardSpr[PARTY];
+  pkmSprites[FRONT] = &charizardSpr[FRONT];
+  pkmSprites[BACK] = &charizardSpr[BACK];
 }
