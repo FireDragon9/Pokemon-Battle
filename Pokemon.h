@@ -1,10 +1,11 @@
-#include <SFML/Graphics/Sprite.hpp>
 #pragma ONCE
 #ifndef POKEMON_H
 #define POKEMON_H
-#include <SFML/Graphics/Texture.hpp>
 
+#include <SFML/Graphics/Sprite.hpp>
+#include <unordered_map>
 #include "SFML/include/Graphics.hpp"
+#include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/String.hpp>
 #include <string>
 
@@ -32,6 +33,7 @@ enum Types {
 
 enum Gender {
 
+  NONE,
   MALE,
   FEMALE
 
@@ -48,6 +50,8 @@ enum sprites {
 //////////////////
 /////////////////
 
+//GENDERS ARE YET TO BE USED !!!!!!!!!!!!!!!!1
+
 class Pokemon {
 private:
   // Pokemon name
@@ -60,6 +64,7 @@ private:
   // Pokemon Gender
   int pkmGender;
 
+  
   // Pokemon type(s)
   int pkmType[2];
 
@@ -68,25 +73,65 @@ private:
   //////////////////////////////////////////
 
 public:
-  // sprites
-  sf::Sprite *pkmSprites[3];
-
-  ~Pokemon() {}
-
-  // Sprites
-
-  // GETTERS
-  sf::Sprite getPartySpr();
-  sf::Sprite getFrontSpr();
-  sf::Sprite getBackSpr();
-
-  // SETTING POS
-  void setPartySprPos(unsigned int x, unsigned int y);
-  void setFrontSprPos(unsigned int x, unsigned int y);
-  void setBackSprPos(unsigned int x, unsigned int y);
 
   // constructor
   Pokemon();
+
+  virtual ~Pokemon() {}
+
+  ///////////////////////////////////
+  ////////////////////////////////// INFORMATION
+  ///////////////////////////////////
+
+  // setters
+  void setName(std::string name);
+
+  void setFirstType(int &type);
+
+  void setSecondType(int &type);
+
+  // getters
+  std::string getName();
+
+  
+  int getFirstType() const;
+
+  ////////////////////////
+  ////////////////////////
+  //////////////////////// SPRITE
+  ////////////////////////
+  ///////////////////////
+
+  class Spr{
+
+
+    private:
+      // sprites
+
+      /* due the use of pointers instead of having their own sprites,
+       * it would cause to position every Pokemon's sprite regadless whether
+       * it's yours or not.
+       * in single battles, it's not a problem.
+       * however, in double battle it would require to recode it
+      */
+
+      std::unordered_map<int, sf::Sprite*> pkmSprites;
+
+    public:
+
+      // GETTERS
+
+      sf::Sprite getSprite(int spr);
+
+      // SETTING
+      
+      void setSprPos(const int &spr, const int &x, const int &y);
+
+  
+      void setSprites(sf::Sprite &party, sf::Sprite &front, sf::Sprite &back);
+
+
+  }Spr;
 
   ///////////////////////////
   /////////////////////////// LEVEL
@@ -95,17 +140,6 @@ public:
   void setLevel(int &lvl);
 
   int getLevel() const;
-
-  ////////////////////////
-  ////////////////////////
-  //////////////////////// SPRITE
-  ////////////////////////
-  ///////////////////////
-  // getters
-
-  // SETTING SPRITE POSITION
-
-  void setSprPos(int x, int y, int spr);
 
   ////////////////////////
   ////////////////////////
@@ -157,23 +191,6 @@ public:
   ///////////////////////////////
   ///////////////////////////////
 
-  // setters
-  void setName(std::string name);
-
-  void setGender(int &gender);
-
-  void setGenderPos(int &x, int &y);
-
-  void setFirstType(int &type);
-
-  void setSecondType(int &type);
-
-  // getters
-  virtual std::string getName();
-
-  sf::Sprite getGender() const;
-
-  int getFirstType() const;
   int getSecondType() const;
 
   /////////////////////////////////////////////////////////

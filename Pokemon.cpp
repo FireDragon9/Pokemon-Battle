@@ -1,7 +1,8 @@
-#include "Pokemon.h"
-#include "Movs.h"
 #include "SFML/include/Graphics.hpp"
 #include <string>
+
+#include "Movs.h"
+#include "Pokemon.h"
 
 using namespace sf;
 using namespace std;
@@ -17,8 +18,6 @@ Pokemon::Pokemon(){};
 
 // POKEMON INFORMATION
 void Pokemon::setName(string name) { this->pkmName = name; }
-
-void Pokemon::setGender(int &gender) {} // setGender
 
 void Pokemon::setFirstType(int &type) { this->pkmType[0] = type; }
 
@@ -39,26 +38,34 @@ int Pokemon::getLevel() const { return this->pkmLevel; }
 ////////////////////////////////////////////////////////////// DRAW
 //////////////////////////////////////////////////////////////
 
-// Setting gender sprite pos
 
 /// setting sprite pos
-void Pokemon::setPartySprPos(unsigned int x, unsigned int y) {
-  pkmSprites[PARTY]->setPosition(x, y);
-}
-void Pokemon::setFrontSprPos(unsigned int x, unsigned int y) {
-  pkmSprites[FRONT]->setPosition(x, y);
-}
-void Pokemon::setBackSprPos(unsigned int x, unsigned int y) {
-  pkmSprites[BACK]->setPosition(x, y);
-}
 
-// GETTING SPRITES
+void Pokemon::Spr::setSprPos(const int &spr, const int &x, const int &y){
 
-Sprite Pokemon::getPartySpr() { return *pkmSprites[PARTY]; }
 
-Sprite Pokemon::getFrontSpr() { return *pkmSprites[FRONT]; }
+  pkmSprites[spr]->setPosition(x, y);
 
-Sprite Pokemon::getBackSpr() { return *pkmSprites[BACK]; }
+}//setSprPos
+
+ 
+
+void Pokemon::Spr::setSprites(Sprite &party, Sprite &front, Sprite &back){
+
+  pkmSprites[PARTY] = &party;
+  pkmSprites[FRONT] = &front;
+  pkmSprites[BACK] = &back;
+
+}//setSprites
+
+Sprite Pokemon::Spr::getSprite(int spr){
+
+  return *pkmSprites[spr];
+
+}//getSprite
+
+
+
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////// BATTLE

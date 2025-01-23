@@ -1,21 +1,23 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <iostream>
+
 #include "BattleSystem.h"
 #include "LoadTextures/BattleUI.cpp"
 #include "Pokemon.h"
-#include "SFML/include/Graphics.hpp"
-#include "SFML/include/System.hpp"
-#include <iostream>
 
 using namespace sf;
 using namespace std;
 
 // texts
-sf::Text playerPkmName;
-sf::Text enemyPkmName;
+Text playerPkmName;
+Text enemyPkmName;
+
+void iniUiTxt() { loadBattleTexture(); }
 
 void battle(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
             sf::Font &gameF) {
 
-  loadBattleTexture();
 
   drawUI(playerPkm, enemyPkm, window, gameF);
 
@@ -26,11 +28,15 @@ void battle(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
 void drawPkm(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
              sf::Font &gameF) {
 
-  playerPkm.setBackSprPos(150, 250);
-  window.draw(playerPkm.getBackSpr());
+  playerPkm.Spr.setSprPos(BACK, playerPkm_x, playerPkm_y);
 
-  enemyPkm.setFrontSprPos(530, 100);
-  window.draw(enemyPkm.getFrontSpr());
+
+  window.draw(playerPkm.Spr.getSprite(BACK));    
+
+  enemyPkm.Spr.setSprPos(FRONT, enemyPkm_x, enemyPkm_y);
+
+  window.draw(enemyPkm.Spr.getSprite(FRONT));
+
 
 } // draw pkmSprites
 
@@ -64,16 +70,20 @@ void drawUI(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
                            enemyPkmName.getGlobalBounds().top +
                                enemyPkmName.getGlobalBounds().height / 2.0f);
 
-    playerPkmName.setPosition(515, 250);
-    enemyPkmName.setPosition(115, 51);
+    playerPkmName.setPosition(playerPkmName_x, playerPkmName_y);
+    enemyPkmName.setPosition(enemyPkmName_x, enemyPkmName_y);
+
+    // gender position
+   // playerPkm.Spr.setGenderPos(playerPkmGender_x, playerPkmGender_y);
+   // enemyPkm.Spr.setGenderPos(enemyPkmGender_x, enemyPkmGender_y);
 
     newName = false;
 
   } // if newName
 
   // setting positions
-  playerHpInterfaceSpr.setPosition(540, 280);
-  enemyHpInterfaceSpr.setPosition(160, 70);
+  playerHpInterfaceSpr.setPosition(playerHpInterface_x, playerHpInterface_y);
+  enemyHpInterfaceSpr.setPosition(enemyHpInterface_x, enemyHpInterface_y);
 
   // drawing
   window.draw(backgroundSpr);
@@ -83,5 +93,6 @@ void drawUI(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
 
   window.draw(playerPkmName);
   window.draw(enemyPkmName);
+
 
 } // drawUI

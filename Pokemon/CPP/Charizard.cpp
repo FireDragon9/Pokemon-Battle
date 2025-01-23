@@ -1,17 +1,23 @@
-#include "../Headers/Charizard.h"
-#include "../LoadTextures/LoadCharizard.cpp"
 #include <iostream>
 #include <ostream>
+
+#include "../../LoadTextures/Gender.cpp"
+#include "../Headers/Charizard.h"
+#include "../LoadTextures/LoadCharizard.cpp"
+
 using namespace std;
 using namespace sf;
 
-Charizard::Charizard(string name) {
+Charizard::Charizard(string name, int gender) {
+ 
+  loadGenderTexture();
 
   loadTexture();
 
   setName(name);
 
-  pkmSprites[PARTY] = &charizardSpr[PARTY];
-  pkmSprites[FRONT] = &charizardSpr[FRONT];
-  pkmSprites[BACK] = &charizardSpr[BACK];
+  Spr.setSprites(charizardSpr[PARTY], charizardSpr[FRONT], charizardSpr[BACK]); 
+  
+
 }
+

@@ -1,15 +1,16 @@
-#include "Pokemon.h"
 #include "SFML/include/Graphics.hpp"
 #include <iostream>
 #include <ostream>
 
-#include "BattleSystem.h"
-#include "Pokemon/Headers/Charizard.h"
+#include "Include/IncludeAll.cpp"
+#include "Include/IncludePokemon.cpp"
 
 using namespace sf;
 using namespace std;
 
 int main(int argc, char *argv[]) {
+
+  iniUiTxt();
 
   Font gameFont;
 
@@ -37,8 +38,8 @@ int main(int argc, char *argv[]) {
 
   ///////////////////
   ///////////////////////////////
-  Charizard charizard1("charizard 1");
-  Charizard charizard2("charizard 2");
+  Charizard charizard1("CHARIZARD", MALE);
+  Charizard charizard2("CHARIZARD", MALE);
 
   while (window.isOpen()) {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
