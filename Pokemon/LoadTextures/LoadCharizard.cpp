@@ -11,14 +11,14 @@ using namespace sf;
  *
  */
 
-Texture charizardTxt[3];
-Sprite charizardSpr[3];
+inline Texture charizardTxt[3];
+inline Sprite charizardSpr[3];
 
-static bool isLoaded = false;
+static bool isCharizardLoaded = false;
 
-void loadTexture() {
+inline void loadCharizardTexture() {
 
-  if (!isLoaded) {
+  if (!isCharizardLoaded) {
 
     // loading textures
     charizardTxt[0].loadFromFile("Sprites/Pokemon/Party/Charizard.png");
@@ -46,6 +46,6 @@ void loadTexture() {
                               charizardSpr[2].getGlobalBounds().top +
                                   charizardSpr[2].getGlobalBounds().height / 2);
 
-    isLoaded = true;
+    isCharizardLoaded = true;
   }
 } // loadTexture()

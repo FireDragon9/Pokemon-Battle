@@ -1,9 +1,8 @@
 #ifndef BATTLESYSTEM_H
 #define BATTLESYSTEM_H
 
-#include "Pokemon.h"
+#include "Include/IncludePokemon.cpp"
 #include "SFML/include/Graphics.hpp"
-#include "LoadTextures/Gender.cpp"
 
 // UI 
 

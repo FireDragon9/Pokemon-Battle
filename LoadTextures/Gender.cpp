@@ -5,15 +5,15 @@
 
 using namespace sf;
 
-sf::Texture maleTxt;
-sf::Texture femTxt;
+inline sf::Texture maleTxt;
+inline sf::Texture femTxt;
 
-sf::Sprite maleSpr;
-sf::Sprite femSpr;
+inline sf::Sprite maleSpr;
+inline sf::Sprite femSpr;
 
 static bool isGenderLoaded = false;
 
-void loadGenderTexture() {
+inline void loadGenderTexture() {
 
   if (!isGenderLoaded) {
 

@@ -10,7 +10,9 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-  iniUiTxt();
+  iniBattleTextures(); 
+
+  iniPokemonTextures();
 
   Font gameFont;
 
@@ -38,8 +40,8 @@ int main(int argc, char *argv[]) {
 
   ///////////////////
   ///////////////////////////////
-  Charizard charizard1("CHARIZARD", MALE);
-  Charizard charizard2("CHARIZARD", MALE);
+  Charizard charizard("CHARIZARD", MALE);
+  Blastoise blastoise("BLASTOISE", MALE);
 
   while (window.isOpen()) {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
@@ -50,9 +52,7 @@ int main(int argc, char *argv[]) {
     // cleaning
     window.clear();
 
-    battle(charizard1, charizard2, window, gameFont);
-
-    // window.draw(backgroundSpr);
+    battle(charizard, blastoise, window, gameFont);
 
     //  displaying
     window.display();

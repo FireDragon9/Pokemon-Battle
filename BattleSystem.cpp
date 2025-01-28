@@ -10,7 +10,7 @@ using namespace sf;
 using namespace std;
 
 // texts
-Text playerPkmName;
+  Text playerPkmName;
 Text enemyPkmName;
 
 void iniUiTxt() { loadBattleTexture(); }
@@ -73,9 +73,6 @@ void drawUI(Pokemon &playerPkm, Pokemon &enemyPkm, sf::RenderWindow &window,
     playerPkmName.setPosition(playerPkmName_x, playerPkmName_y);
     enemyPkmName.setPosition(enemyPkmName_x, enemyPkmName_y);
 
-    // gender position
-   // playerPkm.Spr.setGenderPos(playerPkmGender_x, playerPkmGender_y);
-   // enemyPkm.Spr.setGenderPos(enemyPkmGender_x, enemyPkmGender_y);
 
     newName = false;
 

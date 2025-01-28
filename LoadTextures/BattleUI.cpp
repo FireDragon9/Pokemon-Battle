@@ -3,19 +3,19 @@
 using namespace sf;
 
 // Textures
-Texture backgroundTxt;
-Texture playerHpInterfaceTxt;
-Texture enemyHpInterfaceTxt;
+inline Texture backgroundTxt;
+inline Texture playerHpInterfaceTxt;
+inline Texture enemyHpInterfaceTxt;
 
 // Sprites
-Sprite backgroundSpr;
-Sprite playerHpInterfaceSpr;
-Sprite enemyHpInterfaceSpr;
+inline Sprite backgroundSpr;
+inline Sprite playerHpInterfaceSpr;
+inline Sprite enemyHpInterfaceSpr;
 
-static bool isLoaded = false;
+static bool isBattleTxtLoaded = false;
 
-void loadBattleTexture() {
-  if (!isLoaded) {
+inline void loadBattleTexture() {
+  if (!isBattleTxtLoaded) {
 
     // Loading textures
     backgroundTxt.loadFromFile("Sprites/Background/Background.png");
@@ -40,7 +40,7 @@ void loadBattleTexture() {
         enemyHpInterfaceSpr.getGlobalBounds().top +
             enemyHpInterfaceSpr.getGlobalBounds().height / 2.0f);
 
-    isLoaded = true;
+    isBattleTxtLoaded = true;
 
   } // isLoaded
 }
