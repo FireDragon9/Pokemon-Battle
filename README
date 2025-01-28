@@ -1,3 +1,4 @@
 // THIS IS NOT PLAYABLE YET. //
 
 Making a Pokémon Battle engine using SFML. :)
+It's necessery to have SFML library installed to compile the program.
